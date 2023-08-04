@@ -1,3 +1,5 @@
 .history
 __pycache__
-dataset
+dataset/images
+dataset/labels
+xView_train.geojson
