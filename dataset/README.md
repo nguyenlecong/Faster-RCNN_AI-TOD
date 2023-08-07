@@ -1,8 +1,8 @@
 Class mapping:
-    'airplane': 1
-    'ship': 2
-    'storage-tank': 3
-    'vehicle': 4
+    'airplane': 0
+    'ship': 1
+    'storage-tank': 2
+    'vehicle': 3
 
 Download dataset from: https://github.com/jwwangchn/AI-TOD
 
