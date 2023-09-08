@@ -17,3 +17,5 @@ test_batch = 1
 
 # Train/Test mode
 mode = 'train'
+
+num_epochs = 100
