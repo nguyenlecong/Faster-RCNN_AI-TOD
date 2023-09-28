@@ -3,3 +3,6 @@ __pycache__
 dataset/images
 dataset/labels
 xView_train.geojson
+weights
+loss_train.png
+tmp.tif
