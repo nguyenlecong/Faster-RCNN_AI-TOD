@@ -20,5 +20,6 @@ test_batch = 1
 
 # Train/Test mode
 mode = 'train'
-
-num_epochs = 20
+learning_rate = 0.001
+num_epochs = 1000
+patience = 10  # EarlyStopping patience (epochs without improvement)
