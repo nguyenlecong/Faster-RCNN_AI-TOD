@@ -25,6 +25,6 @@ test_batch = 1
 
 # Train/Test mode
 mode = 'train'
-patience = 5  # 1 for debugging
+patience = 10  # 1 for debugging
 num_epochs = 10000
-learning_rate = 0.001
+learning_rate = 0.1
