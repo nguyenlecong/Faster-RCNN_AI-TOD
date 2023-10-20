@@ -6,7 +6,7 @@ anchor_ratio = (0.5, 1.0, 2.0)
 # anchor_size = (32, 64, 128, 256, 512)  # default
 anchor_size = (8, 16, 32, 64, 128, 256, 512)
 
-detections_per_img = 3000
+detections_per_img = 1500
 
 # Dataset Config
 

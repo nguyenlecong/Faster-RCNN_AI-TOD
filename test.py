@@ -41,10 +41,10 @@ def infer(model, img):
             plot_result(image, boxes[i], cls, str(scr))
 
     image = image[:,:,::-1]
-    cv2.imwrite('tmp.png', image)
+    cv2.imwrite('predictions/tmp.png', image)
 
-    plt.figure(figsize=(20,20))
-    plt.imshow(image[:,:,::-1])
+    # plt.figure(figsize=(20,20))
+    # plt.imshow(image[:,:,::-1])
 
 def test(model):
     with torch.no_grad():
@@ -92,7 +92,7 @@ if __name__ == '__main__':
                                                     shuffle=False, num_workers=4,
                                                     collate_fn=utils.collate_fn)
     
-    model_1 = torch.load('training/1/weights/best.pt')
+    model_1 = torch.load('training/2/weights/last.pt')
     img, target = test_dataset[2500]
     print(target['image_name'])
 

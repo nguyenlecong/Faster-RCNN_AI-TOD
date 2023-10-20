@@ -22,7 +22,7 @@ def plot(log_folder, mode):
         plt.legend()
         save_path = os.path.join(log_folder, f'learning_rate.png')
         plt.savefig(save_path)
-        plt.show()
+        # plt.show()
 
     elif mode == 'val':
         idx = 0
@@ -44,7 +44,7 @@ def plot(log_folder, mode):
     save_path = os.path.join(log_folder, f'{mode}_loss.png')
     plt.savefig(save_path)
 
-    plt.show()
+    # plt.show()
 
 if __name__ == '__main__':
     log_folder = 'training/2'
