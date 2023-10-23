@@ -35,7 +35,7 @@ def plot(log_folder, mode):
     plt.plot(range(1,len(loss)+1), loss, label='loss')
 
     min_loss = min(loss)
-    min_index = loss.index(min(loss)) + 1
+    min_index = loss.index(min(loss))
     plt.plot(min_index, min_loss, '*', label='best value')
     
     plt.title(f'{mode} Loss')
