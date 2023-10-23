@@ -125,7 +125,7 @@ def train():
         # loss = float(str(val_loss).split('  ')[0].split(' ')[1]) # for debugging
         loss = float(str(val_loss).split('  ')[0].split(' ')[2][1:-1])  # Average
 
-        stop = stopper(epoch, round(loss, 2))
+        stop = stopper(epoch, loss)
         if stop:
             best_weight_path = os.path.join(weight_folder, 'best.pt')
             torch.save(model, best_weight_path)
