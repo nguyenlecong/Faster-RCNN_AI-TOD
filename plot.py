@@ -32,7 +32,7 @@ def plot(log_folder, mode):
     loss = [float(str(i).split('  ')[idx].split(' ')[2][1:-1]) for i in lines]
 
     plt.figure(figsize=(15, 10), tight_layout=True)
-    plt.plot(range(1,len(loss)+1), loss, label='loss')
+    plt.plot(range(0,len(loss)), loss, label='loss')
 
     min_loss = min(loss)
     min_index = loss.index(min(loss))
