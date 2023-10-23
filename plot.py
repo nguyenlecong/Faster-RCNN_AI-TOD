@@ -1,4 +1,6 @@
 import os
+import sys
+
 import matplotlib.pyplot as plt
 
 
@@ -47,6 +49,7 @@ def plot(log_folder, mode):
     # plt.show()
 
 if __name__ == '__main__':
-    log_folder = 'training/2'
+    idx = sys.argv[1]
+    log_folder = f'training/{idx}'
     plot(log_folder, mode='train')
     plot(log_folder, mode='val')
