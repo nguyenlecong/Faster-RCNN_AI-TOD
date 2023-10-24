@@ -17,7 +17,7 @@ def plot(log_folder, mode):
         
         lr = [float(str(i).split('  ')[0].split(' ')[1]) for i in lines]
         plt.figure(figsize=(15, 10), tight_layout=True)
-        plt.plot(range(1, len(lr)+1), lr, label='learning rate')
+        plt.plot(range(0, len(lr)), lr, label='learning rate')
         plt.title('Learning rate')
         plt.xlabel('Epoch')
         plt.ylabel('Value')
