@@ -49,6 +49,7 @@ def infer(model, img):
 def test(model):
     with torch.no_grad():
         path, _ = create_folder('predictions', False)
+        print('Results at', path)
 
         device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         model.eval()
@@ -85,6 +86,8 @@ def test(model):
                 file.writelines(s)
             
             file.close()
+
+
 if __name__ == '__main__':
     test_batch = config.test_batch
     test_dataset = CustomDataset('/hdd/thaihq/qnet_search/ori_data/test', get_transform(train=False))
@@ -92,9 +95,13 @@ if __name__ == '__main__':
                                                     shuffle=False, num_workers=4,
                                                     collate_fn=utils.collate_fn)
     
-    model_1 = torch.load('training/2/weights/last.pt')
+    weight_path = config.test_weight_path
+    print('Infer with', weight_path)
+
+    model_1 = torch.load(weight_path)
+
     img, target = test_dataset[2500]
     print(target['image_name'])
 
-    # infer(model_1, img)
+    infer(model_1, img)
     test(model_1)

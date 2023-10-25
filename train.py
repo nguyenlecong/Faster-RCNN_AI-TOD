@@ -98,6 +98,7 @@ def train():
 
     # Config paths
     log_folder, weight_folder = create_folder('training', True)
+    print('Training logs and weights at', log_folder, '\n')
     
     train_log_path = os.path.join(log_folder, 'train_log.txt')
     val_log_path = os.path.join(log_folder, 'val_log.txt')
