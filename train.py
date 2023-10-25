@@ -91,44 +91,57 @@ def train():
 
     # and a learning rate scheduler which decreases the learning rate by
     # 10x every 3 epochs
-    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
 
+    # Early stopping
     stopper = EarlyStopping(config.patience)
 
+    # Config paths
     log_folder, weight_folder = create_folder('training', True)
+    
+    train_log_path = os.path.join(log_folder, 'train_log.txt')
+    val_log_path = os.path.join(log_folder, 'val_log.txt')
+
+    last_weight_path = os.path.join(weight_folder, 'last.pt')
+    best_weight_path = os.path.join(weight_folder, 'best.pt')
 
 
-    print('Start training')
+    print('*** Start training ***')
 
     num_epochs = config.num_epochs
     for epoch in range(num_epochs):
         # train for one epoch, printing every 100 iterations
         train_loss = train_one_epoch(model, optimizer, train_data_loader, device, epoch, print_freq=100)  # val_data_loader for debugging
 
-        train_log_path = os.path.join(log_folder, 'train_log.txt')
+        # Log train loss
         stopper.log(train_log_path, str(train_loss))
 
-        last_weight_path = os.path.join(weight_folder, 'last.pt')
+        # Save last weight
+        print('--- Save the last weight ---')
         torch.save(model, last_weight_path)
 
         # update the learning rate
         lr_scheduler.step()
 
         # evaluate on the val dataset
-        print('Start validating')
-
+        print('*** Start validating ***')
         val_loss = val(model, val_data_loader, device)
 
-        val_log_path = os.path.join(log_folder, 'val_log.txt')
+        # Log val loss
         stopper.log(val_log_path, str(val_loss))
 
+        # Extract val loss
         # loss = float(str(val_loss).split('  ')[0].split(' ')[1]) # for debugging
         loss = float(str(val_loss).split('  ')[0].split(' ')[2][1:-1])  # Average
 
+        # Save best weight
+        if loss <= stopper.best_fitness:
+            print('+++ Save the best weight +++')
+            torch.save(model, best_weight_path)
+
+        # Stop early
         stop = stopper(epoch, loss)
         if stop:
-            best_weight_path = os.path.join(weight_folder, 'best.pt')
-            torch.save(model, best_weight_path)
             break
 
         
